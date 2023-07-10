@@ -20,57 +20,57 @@ class Auth: Codable {
     }
 }
 
-struct IdentificationResponse: Codable {
-    let visit_id: String
-    let device_id: String
-    let device_found: Bool
-    let unique: Float
-    let os: String
-    let os_version: String
-    let threat: Int
-    let violation: Violation
-    let blocked: Bool
-    let first_seen: String
-    let last_seen: String
-    let ip: String
-    let request_id: String
-    let data: String
+public struct IdentificationResponse: Codable {
+    public let visit_id: String
+    public let device_id: String
+    public let device_found: Bool
+    public let unique: Float
+    public let os: String
+    public let os_version: String
+    public let threat: Int
+    public let violation: Violation
+    public let blocked: Bool
+    public let first_seen: String
+    public let last_seen: String
+    public let ip: String
+    public let request_id: String
+    public let data: String
 }
 
-struct Violation: Codable {
-    let tempered: Bool
-    let confidence: Float
+public struct Violation: Codable {
+    public let tempered: Bool
+    public let confidence: Float
     
     enum CodingKeys: String, CodingKey {
         case tempered, confidence
     }
 }
 
-class Identification: Codable {
+public class Identification: Codable {
     
-    var localeIdentifier: String
-    var interfaceStyle: Int
-    var deviceName: String
-    var vendorID: String
-    var systemName: String
-    var systemVersion: String
-    var macOSVersion: String
-    var resolution: Array<CGFloat>
-    var scale: CGFloat
-    var memory: UInt64
-    var cores: Int
-    var availableSpace: String
-    var hostName: String
-    var timezone: String
-    var mobileCountryCode: String
-    var mobileNetworkCode: String
-    var auth: Bool
-    var bioAuth: Bool
-    var saved: String
-    var start: Int64
-    var token: String
-    var request_id: String
-    var data: String
+    public var localeIdentifier: String
+    public var interfaceStyle: Int
+    public var deviceName: String
+    public var vendorID: String
+    public var systemName: String
+    public var systemVersion: String
+    public var macOSVersion: String
+    public var resolution: Array<CGFloat>
+    public var scale: CGFloat
+    public var memory: UInt64
+    public var cores: Int
+    public var availableSpace: String
+    public var hostName: String
+    public var timezone: String
+    public var mobileCountryCode: String
+    public var mobileNetworkCode: String
+    public var auth: Bool
+    public var bioAuth: Bool
+    public var saved: String
+    public var start: Int64
+    public var token: String
+    public var request_id: String
+    public var data: String
     
      init() {
         self.interfaceStyle = UIUserInterfaceStyle.RawValue()
@@ -149,9 +149,9 @@ func keychainRead(service: String, account: String) -> Data? {
     return (result as? Data)
 }
 
-final class deviceID {
+public class deviceID {
     
-    static let standard = deviceID();
+    public static let standard = deviceID();
     var identifier: Identification;
     var JSONID: Data?;
     var loaded = ""
@@ -160,7 +160,7 @@ final class deviceID {
         self.identifier = Identification();
     }
     
-    func load(apiKey: String, secret: String, completion: @escaping (_ data: String?, _ error: Error?)->()) {
+    public func load(apiKey: String, secret: String, completion: @escaping (_ data: String?, _ error: Error?)->()) {
         let url = URL(string: "https://freelancecloud.ddns.net:3001/load")!
         var request = URLRequest(url: url)
         request.setValue("text/plain", forHTTPHeaderField: "Content-Type")
@@ -193,7 +193,7 @@ final class deviceID {
         task.resume()
     }
     
-    func id(tag: String?, request_id: String?, completion: @escaping (_ data: IdentificationResponse?, _ error: Error?)->()) {
+    public func id(tag: String?, request_id: String?, completion: @escaping (_ data: IdentificationResponse?, _ error: Error?)->()) {
             let url = URL(string: "https://freelancecloud.ddns.net/ios")!
         var request = URLRequest(url: url)
         request.setValue("text/plain", forHTTPHeaderField: "Content-Type")
