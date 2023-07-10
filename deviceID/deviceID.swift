@@ -97,7 +97,7 @@ class Identification: Codable {
         } else {
             self.availableSpace = "0"
         }
-         let data = KeychainHelper.standard.read(service: "deviceID-token", account: "multi")
+         let data = keychainRead(service: "deviceID-token", account: "multi")
          if (data != nil) {
              self.saved = String(data: data!, encoding: .utf8)!
          } else {
@@ -112,6 +112,41 @@ class Identification: Codable {
     func setKey(key: String) {
         self.token = key
     }
+    
+    func keychainSave(_ data: Data, service: String, account: String) {
+        
+        // Create query
+        let query = [
+            kSecValueData: data,
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrService: service,
+            kSecAttrAccount: account,
+        ] as CFDictionary
+        
+        // Add data in query to keychain
+        let status = SecItemAdd(query, nil)
+        
+        if status != errSecSuccess {
+            // Print out the error
+            print("Error: \(status)")
+        }
+    }
+    
+    func keychainRead(service: String, account: String) -> Data? {
+        
+        let query = [
+            kSecAttrService: service,
+            kSecAttrAccount: account,
+            kSecClass: kSecClassGenericPassword,
+            kSecReturnData: true
+        ] as CFDictionary
+        
+        var result: AnyObject?
+        SecItemCopyMatching(query, &result)
+        
+        return (result as? Data)
+    }
+
 }
 
 final class deviceID {
@@ -150,22 +185,10 @@ final class deviceID {
                 return
             }
             
-            // do whatever you want with the `data`, e.g.:
-            
-            do {
                 let token = String(data: data, encoding: .utf8)!
                 self.loaded = token
                 self.identifier.setKey(key: token)
                 completion(token, nil)
-            } catch {
-                print(error) // parsing error
-                completion(nil, error)
-                if let responseString = String(data: data, encoding: .utf8) {
-                    print("responseString = \(responseString)")
-                } else {
-                    print("unable to parse response as string")
-                }
-            }
         }
         task.resume()
     }
@@ -244,48 +267,4 @@ extension Date {
     static var timestamp: Int64 {
         return Int64(Date().timeIntervalSince1970 * 1000)
     }
-}
-
-
-class KeychainHelper {
-    
-    static let standard = KeychainHelper()
-    private init() {
-        
-    }
-    
-    func save(_ data: Data, service: String, account: String) {
-        
-        // Create query
-        let query = [
-            kSecValueData: data,
-            kSecClass: kSecClassGenericPassword,
-            kSecAttrService: service,
-            kSecAttrAccount: account,
-        ] as CFDictionary
-        
-        // Add data in query to keychain
-        let status = SecItemAdd(query, nil)
-        
-        if status != errSecSuccess {
-            // Print out the error
-            print("Error: \(status)")
-        }
-    }
-    
-    func read(service: String, account: String) -> Data? {
-        
-        let query = [
-            kSecAttrService: service,
-            kSecAttrAccount: account,
-            kSecClass: kSecClassGenericPassword,
-            kSecReturnData: true
-        ] as CFDictionary
-        
-        var result: AnyObject?
-        SecItemCopyMatching(query, &result)
-        
-        return (result as? Data)
-    }
-    
 }
