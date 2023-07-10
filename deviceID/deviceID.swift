@@ -81,6 +81,7 @@ class Identification: Codable {
         self.macOSVersion = ProcessInfo.processInfo.operatingSystemVersionString
         self.resolution = [UIScreen.main.bounds.width, UIScreen.main.bounds.height]
         self.scale = UIScreen.main.scale
+        self.scale = UIScreen.main.scale
         self.memory = ProcessInfo.processInfo.physicalMemory
         self.cores = ProcessInfo.processInfo.activeProcessorCount
         self.auth = LAContext().canEvaluatePolicy(.deviceOwnerAuthentication, error: nil)

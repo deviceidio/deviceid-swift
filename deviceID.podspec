@@ -17,15 +17,14 @@ Pod::Spec.new do |spec|
 
   spec.name         = "deviceID"
   spec.version      = "0.0.1"
-  spec.summary      = "A short description of deviceID."
+  spec.summary      = "Device Identification Client"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-  spec.description  = <<-DESC
-                   DESC
+  spec.description  = "deviceID platform client"
 
   spec.homepage     = "http://deviceid.io"
   # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
@@ -64,7 +63,7 @@ Pod::Spec.new do |spec|
   #
 
   # spec.platform     = :ios
-  # spec.platform     = :ios, "5.0"
+  spec.platform     = :ios, "14.0"
 
   #  When using multiple platforms
   # spec.ios.deployment_target = "5.0"
@@ -79,8 +78,8 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  spec.source       = { :git => "http://EXAMPLE/deviceID.git", :tag => "#{spec.version}" }
-
+  spec.source       = { :git => "https://github.com/deviceidio/deviceid-swift.git", :tag => "main" }
+  swift_versions = "5.2"
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -90,7 +89,7 @@ Pod::Spec.new do |spec|
   #  Not including the public_header_files will make all headers public.
   #
 
-  spec.source_files  = "Classes", "Classes/**/*.{h,m}"
+  spec.source_files  = "Classes", "**/*.swift"
   spec.exclude_files = "Classes/Exclude"
 
   # spec.public_header_files = "Classes/**/*.h"
@@ -133,5 +132,4 @@ Pod::Spec.new do |spec|
 
   # spec.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # spec.dependency "JSONKit", "~> 1.4"
-
 end
