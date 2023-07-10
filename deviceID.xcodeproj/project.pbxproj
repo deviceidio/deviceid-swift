@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		79ED98102A5BF47700487EDB /* deviceID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ED980F2A5BF47700487EDB /* deviceID.swift */; };
-		79ED98172A5C1D5300487EDB /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ED98162A5C1D5300487EDB /* KeychainHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,7 +25,6 @@
 /* Begin PBXFileReference section */
 		79ED980C2A5BF47700487EDB /* libdeviceID.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libdeviceID.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		79ED980F2A5BF47700487EDB /* deviceID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = deviceID.swift; sourceTree = "<group>"; };
-		79ED98162A5C1D5300487EDB /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +58,6 @@
 			isa = PBXGroup;
 			children = (
 				79ED980F2A5BF47700487EDB /* deviceID.swift */,
-				79ED98162A5C1D5300487EDB /* KeychainHelper.swift */,
 			);
 			path = deviceID;
 			sourceTree = "<group>";
@@ -124,7 +121,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				79ED98102A5BF47700487EDB /* deviceID.swift in Sources */,
-				79ED98172A5C1D5300487EDB /* KeychainHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

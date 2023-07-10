@@ -79,7 +79,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.source       = { :git => "https://github.com/deviceidio/deviceid-swift.git", :tag => "main" }
-  swift_versions = "5.2"
+  swift_version = "5.2"
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
